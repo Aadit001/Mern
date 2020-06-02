@@ -34,7 +34,7 @@ const Routes = () => {
 <AdminRoute path="/admin/products" exact component={ManageProducts}/>
 <AdminRoute path="/admin/orders" exact component={Orders}/>
 <AdminRoute path="/admin/categories" exact component={ManageCategories}/>
-<AdminRoute path="/admin/product/update/productId" exact component={UpdateProduct}/>
+<AdminRoute path="/admin/product/update/:productId" exact component={UpdateProduct}/>
 
 
 
