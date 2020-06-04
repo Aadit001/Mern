@@ -1,39 +1,51 @@
 import React from 'react'
+import Imagehelper from './helper/Imagehelper';
 
-const Card = ()=> {
+const Card = ({product,addtoCart = true,removeFromCart = false})=> {
+
+const cartTitle = product ?  product.name : "A Photo from Pixels";
+const cartDescription = product ?  product.description : "no description found as of now";
+const cartPrice = product ?  product.price : "DEFAULT";
+
+
+
    
+const showAddtoCart = (addtoCart) =>{
+ return (
+   addtoCart && <button
+   onClick={() => {}}
+   className="btn btn-block btn-outline-success mt-2 mb-2"
+ >
+   Add to Cart
+ </button>
+ ) 
+};
+const showremoveFromCart = (removeFromCart) =>{
+  return (
+    removeFromCart && <button
+    onClick={() => {}}
+    className="btn btn-block btn-outline-danger mt-2 mb-2"
+  >
+    Remove from cart
+  </button>
+  )
+};
+
         return (
           <div className="card text-white bg-dark border border-info ">
-            <div className="card-header lead">A photo from pexels</div>
+            <div className="card-header lead">{cartTitle}</div>
             <div className="card-body">
-              <div className="rounded border border-success p-2">
-                <img
-                  src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                  alt="photo"
-                  style={{ maxHeight: "100%", maxWidth: "100%" }}
-                  className="mb-3 rounded"
-                />
-              </div>
+             <Imagehelper product= {product}/>
               <p className="lead bg-success font-weight-normal text-wrap">
-                this photo looks great
+                {cartDescription}
               </p>
-              <p className="btn btn-success rounded  btn-sm px-4">$ 5</p>
+              <p className="btn btn-success rounded  btn-sm px-4">${cartPrice}</p>
               <div className="row">
                 <div className="col-12">
-                  <button
-                    onClick={() => {}}
-                    className="btn btn-block btn-outline-success mt-2 mb-2"
-                  >
-                    Add to Cart
-                  </button>
+                 {showAddtoCart(addtoCart )}
                 </div>
                 <div className="col-12">
-                  <button
-                    onClick={() => {}}
-                    className="btn btn-block btn-outline-danger mt-2 mb-2"
-                  >
-                    Remove from cart
-                  </button>
+                  {showremoveFromCart(removeFromCart )}
                 </div>
               </div>
             </div>
