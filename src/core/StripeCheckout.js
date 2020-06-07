@@ -17,12 +17,29 @@ const [data, setData] = useState({
 const token = isAuthenticated() && isAuthenticated().token
 const userId = isAuthenticated() && isAuthenticated().user._id
 
+const getFinalAmount= () => {
+let amount=0;
+products.map(p =>{
+amount = amount + p.price;
+});
+return amount;
+};
 
+const showStripeButton =() =>{
+return isAuthenticated() ? (
+    <button className="btn btn-success">Pay Now</button>
+) : (
+  <Link to ="/signin">  
+  <button className="btn btn-warning">Signin</button>
+  </Link>
+)
+};
 
     return (
         <div>
-        <h3 className="text-white">Stripe checkout loaded</h3>
-       </div>
+        <h3 className="text-white">Your Total Amount is:{getFinalAmount()}</h3>
+       {showStripeButton()}
+        </div>
     )
 }
 
